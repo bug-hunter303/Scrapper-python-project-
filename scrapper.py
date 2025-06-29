@@ -1,5 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
+import json
+import csv
+
+
 
 url = "https://books.toscrape.com/"
 
@@ -35,12 +39,10 @@ def scrape_books(url):
 
 all_books = scrape_books(url)
 
-import json
 
 with open("books.json" , 'w' , encoding='utf-8') as f:  # encoding= 'utf-8' and ensure_ascii=False is done so the symbol of the currency comes 
     books = json.dump(all_books,f , indent=4 , ensure_ascii=False)
 
-import csv
 
 with open("book.csv" , 'w' , newline="" , encoding='utf-8') as f:
     writer = csv.DictWriter(f , fieldnames=['title','currency','price'])
